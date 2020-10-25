@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Person Details</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+</head>
+<body>
+ <div class="card">
+    <div class="card-header">
+        <h5 class="card-title">Person Details #{{ person.id}}</h5>
+    </div>
+    <div class="card-body">
+    <dl class="row">
+      <dt class="col-sm-3">Name</dt>
+      <dd class="col-sm-9">{{ person.name }}</dd>
+      <dt class="col-sm-3">Email</dt>
+      <dd class="col-sm-9">{{ person.email }}</dd>
+      <dt class="col-sm-3">Phone</dt>
+      <dd class="col-sm-9">{{ person.phone_no }}</dd>
+      <dt class="col-sm-3">Gender</dt>
+      <dd class="col-sm-9">{{ person.gender }}</dd>
+      <dt class="col-sm-3">Address</dt>
+      <dd class="col-sm-9">{{ person.address }}</dd>
+
+    </dl>
+
+    </div>
+</div>
+</body>
+</html>

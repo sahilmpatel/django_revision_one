@@ -1,0 +1,119 @@
+{% extends 'account/comman_for_accounts.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block 'common_for_account' %}
+
+        <div class="breadcrumb-area gray-bg-7">
+            <div class="container">
+                <div class="breadcrumb-content">
+                    <ul>
+                        <li><a href="index.html">Account</a></li>
+                        <li class="active"> Login </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="login-register-area pt-60 pb-65">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-7 col-md-12 ml-auto mr-auto">
+                        <div class="login-register-wrapper">
+                            <div class="login-register-tab-list nav">
+
+                                    <h2 style="font-style:italic; letter-spacing: 1px;"> Login </h2>
+
+                            </div>
+                            <div class="tab-content">
+                                <div >
+                                    <div class="login-form-container">
+                                        <div class="login-register-form">
+                                           <form class="login" style="margin-top:4%" id="login" method="post" action="{% url 'account_login' %}" onsubmit="return Validate()">
+                                               {% csrf_token %}
+                                                <input type="text" name="login" id="username_id" placeholder="Username">
+                                               <span id="username_error" class="text-danger font-weight-bold"></span>
+
+                                                <input type="password" name="password" id="password_id" placeholder="Password">
+                                                <span id="password_error" class="text-danger font-weight-bold"></span>
+
+                                                <div class=" row">
+                                                    <div class="col-md-6">
+                                                            {% if redirect_field_value %}
+                                                                <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                                                            {% endif %}
+                                                        <button style="width:100%; border-radius:5px;" type="submit" class="btn btn-primary"><span>SUBMIT</span></button>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <button style="width:100%; border-radius:5px;" type="reset" class="btn btn-danger"><span>RESET</span></button>
+                                                    </div>
+                                                    </div>
+                                            </form>
+                                            <br><p style="color:black">If You Forgot Your Password, <a style="color:blue;" href="{% url 'account_reset_password' %}">Click Here</a> ... </p>
+                                            <p style="color:black">If You Don't Have Account, <a style="color:blue;" href="{{ signup_url }}">Create One</a> ... </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+<script>
+     var name_error = document.getElementById('username_error');
+    var password_error = document.getElementById('password_error');
+
+function Validate() {
+    let messages = ["Please Enter valid name",
+        "Please Enter valid password",
+    ];
+    // input id fetch
+        var name = document.getElementById('username_id').value;
+        var password = document.getElementById('password_id').value;
+
+
+     // regex
+    var nameRGEX = /^[a-zA-Z0-9 ]+$/;
+    var passwordRGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%_\^&\*])(?=.{8,16})/;
+
+
+    // name
+    if(name == "")
+    {
+         name_error.innerText = "Please Enter name";
+         return false;
+
+    }
+    else {
+        if(nameRGEX.test(name) == false)
+            {
+                name_error.innerText = messages[0];
+                return false;
+            } else {
+                name_error.textContent = ""; }
+            }
+
+
+    // password1
+     if(password == "")
+     {
+         password_error.innerText = "Please Enter password";
+          return false;
+     }
+     else {
+         if(passwordRGEX.test(password) == false)
+            {
+                password_error.innerText = messages[1];
+                return false;
+            } else {
+                password_error.textContent = ""; }
+     }
+
+
+
+
+}
+
+</script>
+
+{% endblock %}
